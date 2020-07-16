@@ -1,0 +1,23 @@
+<%= form_with(url: "/comments", method: "get", local: true) do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Profile Pic</th>
+      <th scope="col">Username</th>
+      <th scope="col">Text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <th scope="row"><img src="<%= comment.author_profile_image_url %>"></th>
+        <td><a href="<%= comment.author_channel_url %>"><%= comment.author_display_name.html_safe %></a></td>
+        <td> <%= comment.text_display.html_safe %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
