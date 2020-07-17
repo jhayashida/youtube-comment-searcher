@@ -77,9 +77,6 @@ GEM
     declarative (0.0.10)
     declarative-option (0.1.0)
     erubi (1.9.0)
-    exception_notification (4.4.3)
-      actionmailer (>= 4.0, < 7)
-      activesupport (>= 4.0, < 7)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.12.2)
@@ -272,7 +269,6 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capybara (>= 2.15)
-  exception_notification
   google-api-client
   jbuilder (~> 2.7)
   listen (~> 3.2)
