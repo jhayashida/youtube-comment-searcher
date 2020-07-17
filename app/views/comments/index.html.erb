@@ -1,14 +1,22 @@
-<%= form_with(url: "comments", method: "get", local: true) do %>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
-<% end %>
+<div class="p-4">
+  <%= form_with(url: "comments", method: "get", local: true) do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q, params[:q]) %>
+    <%= label_tag(:after, "After Date:") %>
+    <%= date_field_tag(:after, params[:after]) %>
+    <%= label_tag(:before, "Before Date:") %>
+    <%= date_field_tag(:before, params[:before]) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+</div>
+<%= will_paginate @comments %>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">Profile Pic</th>
+      <th scope="col"></th>
       <th scope="col">Username</th>
       <th scope="col">Date</th>
+      <th scope="col">YT Link</th>
       <th scope="col">Likes</th>
       <th scope="col">Text</th>
     </tr>
@@ -18,10 +26,12 @@
       <tr>
         <th scope="row"><img src="<%= comment.author_profile_image_url %>"></th>
         <td><a href="<%= comment.author_channel_url %>"><%= comment.author_display_name.html_safe %></a></td>
-        <td> <%= comment.comment_published_at %> </td>
+        <td> <%= comment.comment_published_at.strftime("%F") %> </td>
+        <td> <a href="https://www.youtube.com/watch?v=<%= comment.video_id %>&lc=<%= comment.yt_comment_id %>">Comment</a> </td>
         <td> 👍<%= comment.like_count %> </td>
         <td> <%= comment.text_display.html_safe %> </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @comments %>
