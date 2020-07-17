@@ -6,6 +6,8 @@
     <%= date_field_tag(:after, params[:after]) %>
     <%= label_tag(:before, "Before Date:") %>
     <%= date_field_tag(:before, params[:before]) %>
+    <%= label_tag(:results_per_page, "Results Per Page:") %>
+    <%= select_tag "results_per_page", options_for_select([10,50,100,500,1000], params[:results_per_page]) %>
     <%= submit_tag("Search") %>
   <% end %>
 </div>

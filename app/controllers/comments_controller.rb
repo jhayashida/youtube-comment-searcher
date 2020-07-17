@@ -6,16 +6,24 @@ class CommentsController < ApplicationController
       @comments = @comments.where("lower(text_display) LIKE ?", "%#{params[:q].gsub("'", "&#39;").downcase}%")
     end
 
-    if params.has_key?(:after) && params.has_key?(:before)
-      @comments = @comments.where(comment_published_at: params[:after].to_date.beginning_of_day..params[:before].to_date.end_of_day)
-    elsif !params.has_key?(:after) && params.has_key?(:before)
-      @comments = @comments.where(comment_published_at: "01/01/1900".to_date..params[:before].to_date)
-    elsif params.has_key?(:after) && !params.has_key?(:before)
-      @comments = @comments.where(comment_published_at: params[:after].to_date..Date.today)
-    else
-
+    if params[:after] == ""
+      
     end
 
-    @comments = @comments.order(comment_published_at: :desc).paginate(page: params[:page], per_page: 30)
+    if !params.has_key?(:after) || params[:after] == ""
+      params[:after] = "01/01/1900".to_date
+    end
+
+    if !params.has_key?(:before) || params[:before] == ""
+      params[:before] = Date.today
+    end
+
+    @comments = @comments.where(comment_published_at: params[:after].to_datetime.beginning_of_day..params[:before].to_datetime.end_of_day)
+
+    if !params.has_key?(:results_per_page) || params[:results_per_page] == ""
+      params[:results_per_page] = 50
+    end
+
+    @comments = @comments.order(comment_published_at: :desc).paginate(page: params[:page], per_page: params[:results_per_page])
   end
 end
