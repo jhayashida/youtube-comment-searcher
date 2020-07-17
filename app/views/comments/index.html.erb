@@ -8,6 +8,8 @@
     <tr>
       <th scope="col">Profile Pic</th>
       <th scope="col">Username</th>
+      <th scope="col">Date</th>
+      <th scope="col">Likes</th>
       <th scope="col">Text</th>
     </tr>
   </thead>
@@ -16,6 +18,8 @@
       <tr>
         <th scope="row"><img src="<%= comment.author_profile_image_url %>"></th>
         <td><a href="<%= comment.author_channel_url %>"><%= comment.author_display_name.html_safe %></a></td>
+        <td> <%= comment.comment_published_at %> </td>
+        <td> 👍<%= comment.like_count %> </td>
         <td> <%= comment.text_display.html_safe %> </td>
       </tr>
     <% end %>

@@ -88,4 +88,4 @@ production:
   <<: *default
   database: youtube_comment_searcher_production
   username: youtube_comment_searcher
-  password: <%= ENV['YOUTUBE_COMMENT_SEARCHER_DATABASE_PASSWORD'] %>
+  password: database_password
