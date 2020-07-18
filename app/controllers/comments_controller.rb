@@ -9,6 +9,11 @@ class CommentsController < ApplicationController
     if params[:after] == ""
       
     end
+    
+    if (params.has_key?(:exclude_of_course) && params[:exclude_of_course] == "on")
+      @comments = @comments.where("lower(text_display) ~* ?", '(?<![oO][fF]\s)(course)')
+    end
+
 
     if !params.has_key?(:after) || params[:after] == ""
       params[:after] = "01/01/1900".to_date
@@ -20,10 +25,11 @@ class CommentsController < ApplicationController
 
     @comments = @comments.where(comment_published_at: params[:after].to_datetime.beginning_of_day..params[:before].to_datetime.end_of_day)
 
+
     if !params.has_key?(:results_per_page) || params[:results_per_page] == ""
       params[:results_per_page] = 50
     end
-
-    @comments = @comments.order(comment_published_at: :desc).paginate(page: params[:page], per_page: params[:results_per_page])
+    
+    @comments = @comments.order(created_at: :desc).paginate(page: params[:page], per_page: params[:results_per_page])
   end
 end
