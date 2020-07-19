@@ -10,6 +10,8 @@
         <%= label_tag(:exclude_of_course, "Exclude 'of course' unless also just 'course':") %>
         <%= check_box_tag(:exclude_of_course, params[:exclude_of_course], params[:exclude_of_course]) %>
     </span>
+    <%= label_tag(:sort_by, "Sort By:") %>
+    <%= select_tag(:sort_by, options_for_select(["Date: Old - New", "Date: New - Old"], params[:sort_by])) %>
     <%= label_tag(:results_per_page, "Results Per Page:") %>
     <%= select_tag "results_per_page", options_for_select([10,50,100,500,1000], params[:results_per_page]) %>
     <%= submit_tag("Search") %>

@@ -5,7 +5,7 @@ yt_service = Google::Apis::YoutubeV3::YouTubeService.new
 
 yt_service.key = ZZZyoutube_api_key
 
-response = yt_service.list_comment_threads('snippet', all_threads_related_to_channel_id: ZZZall_threads_related_to_channel_id, page_token: ZZZpage_token)
+response = yt_service.list_comment_threads('snippet', all_threads_related_to_channel_id: ZZZall_threads_related_to_channel_id)
 
 response.items.each do |i|
     snip = i.snippet.top_level_comment.snippet

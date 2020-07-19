@@ -1,7 +1,7 @@
 if Object.const_defined?('RailsDb')
   RailsDb.setup do |config|
     # # enabled or not
-    config.enabled = Rails.env.development?
+    config.enabled = true
 
     # # automatic engine routes mounting
     # config.automatic_routes_mount = true
@@ -13,15 +13,14 @@ if Object.const_defined?('RailsDb')
     # config.white_list_tables = ['posts', 'comments']
 
     # # Enable http basic authentication
-    # config.http_basic_authentication_enabled = false
+    config.http_basic_authentication_enabled = true
+    # # Enable http basic authentication
+    config.http_basic_authentication_user_name = ZZZrails_db_username
 
     # # Enable http basic authentication
-    # config.http_basic_authentication_user_name = 'rails_db'
+    config.http_basic_authentication_password = ZZZrails_db_password
 
     # # Enable http basic authentication
-    # config.http_basic_authentication_password = 'password'
-
-    # # Enable http basic authentication
-    # config.verify_access_proc = proc { |controller| true }
+     config.verify_access_proc = proc { |controller| true }
   end
 end
