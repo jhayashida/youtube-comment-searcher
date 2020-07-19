@@ -22,22 +22,22 @@
   <thead>
     <tr>
       <th scope="col"></th>
+      <th scope="col">Text</th>
       <th scope="col">Username</th>
       <th scope="col">Date</th>
       <th scope="col">YT Link</th>
       <th scope="col">Likes</th>
-      <th scope="col">Text</th>
     </tr>
   </thead>
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
         <th scope="row"><img src="<%= comment.author_profile_image_url %>"></th>
+        <td> <%= comment.text_display.html_safe %> </td>
         <td><a href="<%= comment.author_channel_url %>"><%= comment.author_display_name.html_safe %></a></td>
         <td> <%= comment.comment_published_at.strftime("%F") %> </td>
         <td> <a href="https://www.youtube.com/watch?v=<%= comment.video_id %>&lc=<%= comment.yt_comment_id %>">Comment</a> </td>
         <td> 👍<%= comment.like_count %> </td>
-        <td> <%= comment.text_display.html_safe %> </td>
       </tr>
     <% end %>
   </tbody>
