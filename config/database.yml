@@ -86,6 +86,7 @@ test:
 #
 production:
   <<: *default
+  host: localhost
   database: youtube_comment_searcher_production
   username: youtube_comment_searcher
   password: <%= Rails.application.credentials[:production][:production_database_password] %> 
