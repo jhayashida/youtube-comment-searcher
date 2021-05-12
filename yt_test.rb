@@ -3,9 +3,9 @@ require 'google/apis/youtube_v3'
 
 yt_service = Google::Apis::YoutubeV3::YouTubeService.new
 
-yt_service.key = ZZZyoutube_api_key
+yt_service.key = Rails.application.credentials[:development][:apis][:youtube][:youtube_api_key]
 
-response = yt_service.list_comment_threads('snippet', all_threads_related_to_channel_id: ZZZall_threads_related_to_channel_id)
+response = yt_service.list_comment_threads('snippet', all_threads_related_to_channel_id: Rails.application.credentials[:development][:apis][:youtube][:youtube_all_threads_related_to_channel_id]
 
 response.items.each do |i|
     snip = i.snippet.top_level_comment.snippet
@@ -15,7 +15,7 @@ end
 next_page_token = response.next_page_token
 
 while !next_page_token.nil? && next_page_token != ""
-    response = yt_service.list_comment_threads('snippet', all_threads_related_to_channel_id: ZZZall_threads_related_to_channel_id, page_token: next_page_token)
+    response = yt_service.list_comment_threads('snippet', all_threads_related_to_channel_id: Rails.application.credentials[:development][:apis][:youtube][:youtube_all_threads_related_to_channel_id], page_token: next_page_token)
 
     response.items.each do |i|
         snip = i.snippet.top_level_comment.snippet
