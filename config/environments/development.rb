@@ -28,6 +28,7 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
@@ -44,6 +45,8 @@ Rails.application.configure do
 
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
+  
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
