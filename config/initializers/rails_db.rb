@@ -4,7 +4,7 @@ if Object.const_defined?('RailsDb')
     config.enabled = true
 
     # # automatic engine routes mounting
-    # config.automatic_routes_mount = true
+    config.automatic_routes_mount = false
 
     # set tables which you want to hide ONLY
     # config.black_list_tables = ['users', 'accounts']

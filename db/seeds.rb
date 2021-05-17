@@ -12,5 +12,14 @@ user = User.new(
     password_confirmation: Rails.application.credentials[:my_password]
 )
 
-user.skip_confirmation!
-user.save!
+#user.skip_confirmation!
+#user.save!
+
+other_user = User.new(
+    email: Rails.application.credentials[:sam_email],
+    password: Rails.application.credentials[:sam_password],
+    password_confirmation: Rails.application.credentials[:sam_password]
+)
+
+other_user.skip_confirmation!
+other_user.save!
