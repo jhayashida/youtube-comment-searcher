@@ -14,7 +14,7 @@
     <nav class="navbar navbar-light bg-light px-4">
       <a class="navbar-brand" href="<%= comments_path %>" style="font-color: red;">Youtube Comment Searcher</a>
       <% if user_signed_in? %>
-        <div><%= link_to "Logout", destroy_user_session_path, method: :delete %>
+       <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
       <% end %>
     </nav>
     <div class="container-fluid">
