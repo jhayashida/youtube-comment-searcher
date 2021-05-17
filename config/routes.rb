@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   root to: redirect('comments')
   get 'comments', to: 'comments#index'
-
-  mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
+  authenticated :user do
+    mount RailsDb::Engine => '/rails/db', :as => 'rails_db'
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
